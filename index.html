@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>GameBoy Color - CSS</title>
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush|Merriweather+Sans:700,700i|Passion+One:900|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="instructions__container">
+  <h1 class="instructions-title">INSTRUCTIONS</h1>
+</div> <!-- /instructions__container -->
+<div class="gbc-main__container">
+  <div class="comm__container">
+    <p class="comm-txt"><span class="comm-caret"><!-- caret --></span> COMM</p>
+  </div> <!-- /comm__container -->
+
+  <!-- HEAD GAME BOY COLOR -->
+
+  <div class="gbc-display__container">
+    <div class="powerLight__container">
+      <span id="led" class="powerLight"></span> <!-- /powerLight -->
+      <span class="crescent"></span> <!-- /crescent -->
+      <span class="crescent"></span> <!-- /crescent -->
+      <span class="crescent"></span> <!-- /crescent -->
+      <p class="powerLight-txt">POWER</p>
+    </div> <!-- /powerLight__container -->
+    <div class="display__screen">
+      <video id="video" class="screen-on">
+        <source src="video/gameBoyColor.webm" type="video/webm">
+        <source src="video/gameBoyColor.mp4" type="video/mp4">
+        <p>Your browser does not support the video tag.</p>
+      </video>
+    </div> <!-- /display-screen -->
+    <div class="display__title">
+      <p class="display__title-gameBoy">GAME BOY 
+        <span class="display__title-gameBoy-C">C</span>
+        <span class="display__title-gameBoy-O-1">O</span>
+        <span class="display__title-gameBoy-L">L</span>
+        <span class="display__title-gameBoy-O-2">O</span>
+        <span class="display__title-gameBoy-R">R</span>
+      </p>
+    </div> <!-- /display__title -->
+    <div class="display__oval-bottom"></div>
+  </div> <!-- /gbc-display__container -->
+
+  <!-- END HEAD GAME BOY COLOR -->
+
+  <div class="switch-on-off__container">
+    <input type="checkbox" id="switch" name="switch" class="switch-check">
+    <label for="switch" class="switch-label"></label>
+  </div> <!-- /switch-on-off__container -->
+
+  <!-- BODY OF GAME BOY COLOR -->
+
+  <div class="gbc-body__container">
+    <div class="title-container">
+      <p class="title-nintendo">Nintendo<sup>&reg;</sup></p>
+    </div> <!-- /title-container-nintendo -->
+
+    <!-- FIRST BLOCK BUTTONS -->
+
+    <div class="body-block__btn-1">
+      <div class="arrows__container">
+        <div class="btn-arrow btn-arrow-up"></div>
+        <div class="btn-arrow btn-arrow-right"></div>
+        <div class="btn-arrow btn-arrow-center"></div>
+        <div class="btn-arrow btn-arrow-down"></div>
+        <div class="btn-arrow btn-arrow-right-left"></div>
+      </div> <!-- /arrows__container -->
+      <div class="btn-a-b__container">
+        <div class="btn btn--B">B</div>
+        <div class="btn btn--A">A</div>
+      </div> <!-- /btn-a-b__container -->
+    </div> <!-- /body-block__btn-1 -->
+
+    <!-- END FIRST BLOCK BUTTONS -->
+
+    <!-- SECOND BLOCK BUTTONS -->
+
+    <div class="body-block__btn-2">
+      <div class="btn-options__container">
+        <div class="btn-options-bg">
+          <div class="btn-options btn-options--select"><!-- SELECT --></div>
+        </div>
+        <div class="btn-options-bg">
+          <div class="btn-options btn-options--start"><!-- START --></div>
+        </div>
+      </div> <!-- /btn-options__container -->
+    </div> <!-- /body-block__btn-2 -->
+
+    <!-- END SECOND BLOCK BUTTONS -->
+
+  <div class="volume__container">
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-transparent"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-transparent"></span>     
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+      <span class="dot-volume dot-volume-open"></span>
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+      <span class="dot-volume dot-volume-open"></span>
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>      
+      <span class="dot-volume dot-volume-open"></span>
+    </div>
+
+    <div class="group-dot">
+      <span class="dot-volume dot-volume-transparent"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-close"></span>
+      <span class="dot-volume dot-volume-open"></span>
+      <span class="dot-volume dot-volume-transparent"></span>      
+    </div>
+  </div> <!-- /volume__container -->
+  </div> <!-- /gbc-body__container -->
+
+  <!-- END BODY OF GAME BOY COLOR -->
+  <div class="bgc-main__oval-bottom"></div>
+</div> <!-- /gbc-main__container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

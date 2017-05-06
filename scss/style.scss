@@ -1,0 +1,606 @@
+$gameBoy-bg: #6fde27;
+$display-gb: #111;
+$screen-bg: #b1aca8;
+$btn-color: #1b1b1b;
+$color-txt: #fbfbf9;
+$font-Merriweather: 'Merriweather Sans', sans-serif;
+$font-ubuntu: 'Ubuntu', sans-serif;
+$font-CaveatBrush: 'Caveat Brush', cursive;
+$font-PassionOne: 'Passion One', cursive;
+@function longShadow($number, $color) {
+  $box-shadow: 1px 1px #{$color};
+  @for $i from 1 through $number {
+    $box-shadow: '#{$box-shadow}, #{$i}px #{$i}px #{$color}';
+  }
+  @return unquote($box-shadow);
+}
+
+/****** reset html tags ******/
+html,
+body {
+	background-color: #111;
+  box-sizing: border-box;
+  font-family: $font-ubuntu;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+h1,
+h2,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+/** INSTRUCTION CONTAINER **/
+
+.instructions__container {
+	text-align: center;
+	color: $color-txt;
+	margin: 20px 0;
+}
+.instructions-title {
+	font-size: 24px;
+}
+
+/** END INSTRUCTION CONTAINER **/
+
+/** GAME BOY COLOR MAIN CONTAINER **/
+
+.gbc-main__container {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+	width: 350px;
+	padding-top: .1px;
+	height: 600px;
+	background: $gameBoy-bg linear-gradient(rgba(#eee, .1), transparent);
+	box-shadow: 0px -8px 2px 1px $gameBoy-bg inset, 0px -6px 2px 1px rgba(lighten($gameBoy-bg, 25), .6) inset, 0px 6px 2px 1px rgba(lighten($gameBoy-bg, 25), .6) inset, 2px 0px 2px 1px rgba(darken($gameBoy-bg, 20), .6) inset, -2px 0px 2px 1px rgba(darken($gameBoy-bg, 20), .6) inset;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+	position: relative;
+	z-index: 20;
+}
+.bgc-main__oval-bottom {
+	display: block;
+	width: calc(350px - 40px);
+  height: 30px;
+  position: absolute;
+  bottom: -9px;
+  transform: translateX(-50%);
+  left: 50%;
+	border-radius: 50%;
+	background-color: $gameBoy-bg;
+	box-shadow: 0px -2px 0px 0px rgba(darken($gameBoy-bg, 20), .6) inset;
+}
+.comm__container {
+	position: absolute;
+	left: 20px;
+	top: 0;
+}
+.comm-txt {
+	line-height: 25px;
+	margin-left: 75px;
+	color: lighten($gameBoy-bg, 2);
+	text-shadow: .5px .5px .5px darken($gameBoy-bg, 15);
+}
+.comm-caret {
+	width: 0; 
+	height: 0;
+	position: absolute;
+	top: 6px;
+	left: 50%;
+	transform: translateX(-50%) rotateZ(-90deg);
+	border-left: 12px solid darken($gameBoy-bg, 6);
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+}
+.switch-on-off__container {}
+.switch-check {
+	display: none;
+	position: absolute;
+	top: 120px;
+	right: 0;
+	&:checked + .switch-label {
+		top: 130px;
+	}
+}
+.switch-label {
+	width: 3px;
+	height: 20px;
+	background-color: darken(#ccc, 60);
+	position: absolute;
+	top: 140px;
+	right: -3px;
+	cursor: pointer;
+	transition: all .2s;
+	&:after {
+		content: 'Off/On';
+		color: $color-txt;
+		margin-left: 10px;
+		font-size: 12px;
+	}
+}
+
+/** END GAME BOY COLOR MAIN CONTAINER **/
+
+/** DISPLAY CONTAINER **/
+
+.gbc-display__container {
+	width: 300px;
+	height: 270px;
+	margin: 25px;
+	background-color: $display-gb;
+	padding-top: 30px;
+	border-radius: 20px;
+	position: relative;
+	z-index: 20;
+	box-shadow: 2px 2px 2px 0px darken($display-gb, 5) inset, -2px -2px 2px 0px darken($display-gb, 5) inset, 1px 0px 1px 0px lighten($display-gb, 2), -1px 0px 1px 0px lighten($display-gb, 2);
+}
+.display__oval-bottom {
+	display: block;
+	width: calc(100% - 20px);
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+	border-radius: 50%;
+	background: $display-gb;
+	box-shadow: 0px -2px 2px 0px darken($display-gb, 5) inset, 0px -1px 1px 0px lighten($display-gb, 2);
+}
+
+/** POWERLIGHT CONTAINER **/
+
+.powerLight__container {
+	position: absolute;
+	top: 70px;
+	left: 5px;
+}
+.powerLight {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: rgba(darken(#b20000, 10), .4);
+	box-shadow: 0px 0px 3px#222 inset, 2px 2px 2px rgba(#333, .2) inset, -1px 2px 2px rgba(#eee, .1) inset, -1px -1px 1px rgba(#333, .1) inset;
+	display: inline-block;
+	border: .5px solid #222;
+	transition: all 2s;
+}
+.powerLight-on {
+	background-color: #b20000;
+	box-shadow: 0px 0px 3px#222 inset, 2px 2px rgba(darken(#b20000, 10), .2) inset;
+	display: inline-block;
+	border: .5px solid #222;
+	transition: all .5s;
+}
+.crescent {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: transparent;
+	display: inline-block;
+	margin-right: -6px;
+	box-shadow: -4px 0px #67879a inset;
+	&:nth-child(2) {
+		margin-left: -5px;
+	}
+	&:nth-child(3) {
+		box-shadow: -3px 0px #67879a inset;
+		margin-right: -7px;
+	}
+	&:nth-child(4) {
+		box-shadow: -2.5px 0px #67879a inset;
+	}
+}
+.powerLight-txt {
+	color: #67879a;
+	font-size: 10px;
+}
+
+/** END POWERLIGHT CONTAINER **/
+
+/** SCREEN CONTAINER **/
+
+.display__screen {
+	width: 210px;
+	height: 190px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: darken($screen-bg, 20);
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px 0px darken($display-gb, 5) inset, -1px -1px 1px 0px darken($display-gb, 5) inset, 1px 0px 1px 0px lighten($display-gb, 2), -1px 0px 1px 0px lighten($display-gb, 2);
+	position: relative;
+	&:after {
+		content: "";
+		position: absolute;
+		width: 98%;
+		height: 98%;
+		top: 1%;
+		left: 1%;
+		background-image:	radial-gradient(rgba($screen-bg, .1) 25%, transparent 25%);
+		background-size: 3px 3px;
+	}
+}
+.screen-on {
+	width: 99%;
+	height: 99%;
+	padding: 1px;
+	position: relative;
+	left: 1px;
+	top: 1px;
+}
+
+/** END SCREEN CONTAINER **/
+
+/** TITLE DISPLAY **/
+
+.display__title {
+	position: relative;
+	z-index: 20;
+	opacity: .9;
+}
+.display__title-gameBoy {
+	text-align: center;
+	margin-right: 14px;
+	color: #67879a;
+	line-height: 60px;
+	font-size: 22px;
+	font-family: $font-Merriweather;
+}
+.display__title-gameBoy-C {
+	font-family: $font-CaveatBrush;
+	font-size: 30px;
+	letter-spacing: -9px;
+	color: #c90b2b;
+}
+.display__title-gameBoy-O-1 {
+	font-family: $font-CaveatBrush;
+	font-size: 28px;
+	letter-spacing: -9px;
+	color: #5236d0;
+}
+.display__title-gameBoy-L {
+	display: inline-block;
+	font-family: $font-CaveatBrush;
+	font-size: 30px;
+	letter-spacing: -9px;
+	color: #6fde27;
+	transform: rotate(-12deg);
+}
+.display__title-gameBoy-O-2 {
+	font-family: $font-CaveatBrush;
+	font-size: 28px;
+	letter-spacing: -9px;
+	color: #e5da1d;
+}
+.display__title-gameBoy-R {
+	font-family: $font-CaveatBrush;
+	font-size: 32px;
+	letter-spacing: -9px;
+	color: #147cc9;
+}
+
+/** END TITLE DISPLAY **/
+
+/** END DISPLAY CONTAINER **/
+
+/** BODY OF GAME BOY COLOR **/
+
+.gbc-body__container {}
+.title-container {
+	text-align: center;
+	margin-bottom: 15px;
+	border-width: 4px;
+	border-style: solid;
+	border-color: darken($gameBoy-bg, 15);
+	border-radius: 40px;
+	display: inline-block;
+	left: 50%;
+	position: relative;
+	transform: translateX(-50%);
+	opacity: .6;
+}
+.title-nintendo {
+	border-radius: 40px;
+	font-family: $font-PassionOne;
+	padding: 2px 5px;
+	box-shadow: 1px -1px 1px 0px rgba(darken($gameBoy-bg, 12), .9), -1px 1px 1px 0px rgba(darken($gameBoy-bg, 12), .9);
+	letter-spacing: 1px;
+	display: inline-block;
+	font-size: 18px;
+	color: rgba(darken($gameBoy-bg, 12), .8);
+	text-shadow: .5px .5px 0px lighten($gameBoy-bg, 2), 0 0 0 rgba(#000, .9), -.5px .5px 0px lighten($gameBoy-bg, 10);
+	& sup {
+		font-size: 12px;
+	}
+}
+
+/** FIRST BLOCK BUTTONS **/
+
+.body-block__btn-1 {
+	// background-color: red;
+	display: flex;
+	justify-content: space-around;
+}
+
+/** ARRROWS BUTTONS **/
+
+.arrows__container {
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	position: relative;
+	padding-right: 25px;
+	margin-top: 10px;
+
+}
+.btn-arrow {
+	width: 30px;
+	height: 30px;
+	background-color: $btn-color;
+	position: absolute;
+	cursor: pointer;
+}
+.btn-arrow-up {
+	box-shadow: -.5px 1px 1px rgba(#fff, .5) inset, 1px -1px 0 $btn-color, 2px -2px 0 $btn-color, 2px 16px 0 $btn-color;
+	transition: all .2s;
+	&:active {
+		box-shadow: 1px .5px 1px rgba(#fff, .5) inset, 1px 1px 0 $btn-color;
+	}	
+	&:after {
+		content: '';
+		width: 0; 
+		height: 0;
+		position: absolute;
+		left: 50%;
+		top: 6px;
+		transform: translateX(-50%) rotateZ(-90deg);
+		border-left: 12px solid darken($btn-color, 2);
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent;
+	}
+}
+.btn-arrow-right {
+	top: 30px;
+	left: 89px;
+	transform: rotateZ(-90deg);
+	box-shadow: -.5px -1px 1px rgba(#fff, .5) inset, 1px 1px 0 $btn-color, 2px 2px 0 $btn-color;
+	transition: all .2s;
+	&:active {
+		box-shadow: 1px -.5px 1px rgba(#fff, .5) inset, 0px -1px 0 $btn-color;
+	}	
+	&:before {
+		content: '';
+		width: 0; 
+		height: 0;
+		position: absolute;
+		bottom: 6px;
+		left: 50%;
+		transform: translateX(-50%) rotateZ(90deg);
+		border-left: 12px solid darken($btn-color, 2);
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent; 
+	}
+}
+.btn-arrow-center {
+	top: 30px;
+	position: relative;
+	box-shadow: -2px 0px 2px 0 $btn-color, 0px -2px 2px 0 $btn-color;
+	z-index: 20;
+	&:before {
+		content: '';
+		width: 20px; 
+		height: 20px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		border-radius: 50%;
+		background-color: darken($btn-color, 2);
+		transform: translate(-50%, -50%);
+		box-shadow: -1px -5px 5px 0px rgba(lighten($btn-color, 6), .8) inset;
+
+	}
+}
+.btn-arrow-down {
+	top: 60px;
+	box-shadow: -.5px -1px 1px rgba(#fff, .5) inset, 1px -1px 0 $btn-color, 2px -2px 0 $btn-color;
+	transition: all .2s;
+	&:active {
+		box-shadow: .5px -1px 1px rgba(#fff, .5) inset, 1px -1px 0 $btn-color;
+	}
+	&:before {
+		content: '';
+		width: 0; 
+		height: 0;
+		position: absolute;
+		left: 50%;
+		bottom: 6px;
+		transform: translateX(-50%) rotateZ(90deg);
+		border-left: 12px solid darken($btn-color, 2);
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent; 
+	}
+}
+.btn-arrow-right-left {
+	top: 30px;
+	left: 30px;
+	transform: rotateZ(-90deg);
+	box-shadow: -.5px 1px 1px rgba(#fff, .5) inset, 1px 1px 0 $btn-color, 2px 2px 0 $btn-color;
+	transition: all .2s;
+	&:active {
+		box-shadow: 1px .5px 1px rgba(#fff, .5) inset, -1px 0px 0 $btn-color;
+	}	
+	&:after {
+		content: '';
+		width: 0; 
+		height: 0;
+		position: absolute;
+		top: 6px;
+		left: 50%;
+		transform: translateX(-50%) rotateZ(-90deg);
+		border-left: 12px solid darken($btn-color, 2);
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent; 
+	}
+}
+
+/** ARRROWS BUTTONS **/
+
+/** BTN A / B BUTTONS **/
+
+.btn-a-b__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 25px;
+	width: 50%;
+	transform: rotateZ(-15deg);
+	position: relative;
+	margin-top: 30px;
+}
+.btn {
+	width: 40px;
+	height: 40px;
+	margin: 0 10px;
+	background-color: $btn-color;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: darken($btn-color, 5);
+	text-shadow: .5px .5px .5px lighten($btn-color, 8);
+	box-shadow: -.5px .5px 1px rgba(#fff, .5) inset, longShadow(1, $btn-color);
+	transition: all .2s;
+	cursor: pointer;
+	&:active {
+		box-shadow: .5px -.5px 0 rgba(#fff, .5) inset, longShadow(0, $btn-color);
+	}
+}
+.btn--A {
+	padding-right: 7px;
+}
+.btn--B {
+	padding-right: 7px;
+}
+
+/** END BTN A / B BUTTONS **/
+
+/** END FIRST BLOCK BUTTONS **/
+
+/** SECOND BLOCK BUTTONS **/
+
+.body-block__btn-2 {
+	display: flex;
+	justify-content: center;	
+}
+.btn-options__container {
+	display: flex;
+	margin-top: 55px;
+	justify-content: center;
+	width: 50%;
+}
+.btn-options {
+	width: 40px;
+	height: 10px;
+	border-radius: 40px;
+	background-color: $btn-color;
+	font-size: 14px;
+	position: relative;
+	box-shadow: -.5px .5px 1px rgba(#fff, .5) inset, longShadow(1, $btn-color);
+	transition: all .2s;
+	cursor: pointer;
+	&:active {
+		box-shadow: .5px -.5px 0 rgba(#fff, .5) inset, longShadow(0, $btn-color);
+	}
+}
+.btn-options-bg {
+	width: 50px;
+	height: 20px;
+	box-shadow: 0px 2px 10px 2px rgba(darken($gameBoy-bg, 10), .7) inset, 0px -2px 5px 1px rgba(lighten($gameBoy-bg, 10), .7) inset;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 40px;
+	margin-right: 5px;
+	&:last-child {
+		margin-left: 5px;
+	}
+}
+.btn-options--select {
+	position: relative;
+	&:after {
+		content: 'SELECT';
+		position: absolute;
+		top: 15px;
+		left: 50%;
+		color: lighten($gameBoy-bg, 2);
+		text-shadow: .5px .5px .5px darken($gameBoy-bg, 15);
+		transform: translateX(-50%);
+	}
+}
+.btn-options--start {
+	position: relative;
+	&:after {
+		content: 'START';
+		position: absolute;
+		color: lighten($gameBoy-bg, 2);
+		text-shadow: .5px .5px .5px darken($gameBoy-bg, 15);
+		top: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+/** VOLUME COMTAINER **/
+
+.volume__container {
+	width: 90px;
+	height: 80px;
+	position: absolute;
+	right: 20px;
+	bottom: 30px;
+	text-align: center;
+	transform: rotateZ(-5deg);
+	z-index: 20;
+}
+.dot-volume {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #111;
+}
+.group-dot {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2px;
+	margin-bottom: -9px;
+
+}
+.dot-volume-open {
+	background-color: darken(#111, 10);
+	margin-left: 2px;
+	box-shadow: -.5px .5px .5px .5px lighten(#111, 5) inset;
+}
+.dot-volume-close {
+	background-color: darken($gameBoy-bg, 10);
+	margin-left: 2px;
+	box-shadow: -.5px 1px .5px 0px darken($gameBoy-bg, 20) inset;
+}
+.dot-volume-transparent {
+	background-color: transparent;
+}
+
+/** END VOLUME COMTAINER **/
+
+/** END SECOND BLOCK BUTTONS **/
+
+/** END BODY OF GAME BOY COLOR **/
